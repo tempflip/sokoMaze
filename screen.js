@@ -26,7 +26,7 @@ const updateScreen = (level) => {
         out.push('\n');
     }
     console.log(out.join('') , ...styles);
-}
+};
 
 export const SCREEN = {
     updateScreen : updateScreen

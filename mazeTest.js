@@ -34,8 +34,8 @@ const updateScreen = (level) => {
 
 // ==============================
 
-let mz = new Array(40).fill(10).map(el => {
-    return new Array(40).fill(9);
+let mz = new Array(15).fill(9).map(el => {
+    return new Array(15).fill(9);
 });
 
 let xStart = 0;
@@ -43,4 +43,6 @@ let yStart = 0;
 let xEnd = mz[0].length;
 let yEnd = mz.length;
 mz = MAZE.makeMaze(mz, xStart, yStart, xEnd, yEnd, true)
+mz = MAZE.fillEmpties(mz, 9);
+
 updateScreen(mz);

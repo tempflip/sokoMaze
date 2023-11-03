@@ -21,7 +21,7 @@ const makeMaze = (mz, xStart, yStart, xEnd, yEnd, isHor=true, doRec=3) => {
 
     let where = 1 + Math.floor(Math.random()*(maxSize - 2))
 
-    console.log(doRec, ' : arguments', xStart, yStart, xEnd, yEnd, isHor, doRec, maxSize, where);
+    // console.log(doRec, ' : arguments', xStart, yStart, xEnd, yEnd, isHor, doRec, maxSize, where);
     
     drawMe(mz, xStart, yStart, xEnd, yEnd, where);
 
@@ -58,6 +58,32 @@ const makeMaze = (mz, xStart, yStart, xEnd, yEnd, isHor=true, doRec=3) => {
     return mz;
 }
 
+const findElement = (level, el) => {
+    let xy = [];
+    for (let i = 0; i < level.length; i++) {
+        for (let j = 0; j < level.length; j++) {
+            if (level[i][j] == el) {
+                xy.push([j,i]);
+            }
+        }
+    }
+    return xy;
+};
+
+const fillEmpties = (mz, n, elTofill = 0, elFillWith = 9) => {
+    let empties = findElement(mz, elTofill);
+    console.log('n', n);
+    for (let i = 0; i<n; i++) {
+        let r = Math.floor(Math.random() * empties.length);
+        console.log('## r ', r);
+        let [x, y] = empties[r];
+        mz[y][x] = elFillWith;
+    }
+    return mz;
+}
+
 module.exports = {
-    makeMaze : makeMaze
+    makeMaze : makeMaze,
+    findElement : findElement,
+    fillEmpties : fillEmpties
 }
